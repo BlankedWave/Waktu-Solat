@@ -27,6 +27,22 @@
             width: 100px;
             margin: 0 auto;
         }
+
+        .highlight-past {
+    background-color: yellow;
+    }
+    .highlight-current {
+        background-color: green;
+    }
+    .highlight-next {
+        background-color: red;
+        animation: blink 1s infinite alternate;
+    }
+    @keyframes blink {
+        0% { opacity: 1; }
+        100% { opacity: 0.5; }
+    }
+
     </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
@@ -222,6 +238,24 @@
             return `${hours}:${minutes.toString().padStart(2, '0')} ${period}`;
         }
 
+        let prayerClass = "";
+        if (currentTime >= prayerDateTime) {
+            prayerClass = "highlight-past"; // Waktu yang telah lepas
+        }
+        if (index === nextPrayerIndex) {
+            prayerClass = "highlight-next"; // Waktu solat seterusnya
+        }
+        if (index === currentPrayerIndex) {
+            prayerClass = "highlight-current"; // Waktu solat yang sedang masuk
+        }
+        output += `<div class="bg-white p-4 rounded-lg shadow-md ${prayerClass}">
+            <h3 class="font-semibold">${name}</h3>
+            <p>${time12Hour}</p>
+        </div>`;
+
+
+
+        
         getQuranVerse();
         displayDate();
     </script>
