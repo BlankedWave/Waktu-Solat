@@ -163,7 +163,7 @@
                     "fajr": "Subuh",
                     "syuruk": "Syuruk",
                     "dhuha": "Dhuha",
-                    "dhuhr": "Zohor",
+                    "dhuhr": new Date().getDay() === 5 ? "Jumaat" : "Zohor",
                     "asr": "Asar",
                     "maghrib": "Maghrib",
                     "isha": "Isyak"
