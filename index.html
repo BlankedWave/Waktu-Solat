@@ -244,27 +244,46 @@
         //     document.getElementById("hijriDate").innerText = `🏠 Tarikh Hijri: ${Intl.DateTimeFormat('ar-SA-u-ca-islamic', {dateStyle: 'long'}).format(today)}`;
         // }
 
-        function displayDate() {
-            const today = new Date();
-            
-            const daysInMalay = {
-                "Sunday": "Ahad",
-                "Monday": "Isnin",
-                "Tuesday": "Selasa",
-                "Wednesday": "Rabu",
-                "Thursday": "Khamis",
-                "Friday": "Jumaat",
-                "Saturday": "Sabtu"
-            };
-        
-            const dayNameEnglish = today.toLocaleDateString('en-US', { weekday: 'long' });
-            const dayNameMalay = daysInMalay[dayNameEnglish];
-        
-            const formattedDate = `${dayNameMalay}, ${today.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
-        
-            document.getElementById("gregorianDate").innerText = `📅 Tarikh Masihi: ${formattedDate}`;
-            document.getElementById("hijriDate").innerText = `🏠 Tarikh Hijri: ${Intl.DateTimeFormat('ar-SA-u-ca-islamic', { dateStyle: 'long' }).format(today)}`;
-        }
+function displayDate() {
+    const today = new Date();
+    
+    const daysInMalay = {
+        "Sunday": "Ahad",
+        "Monday": "Isnin",
+        "Tuesday": "Selasa",
+        "Wednesday": "Rabu",
+        "Thursday": "Khamis",
+        "Friday": "Jumaat",
+        "Saturday": "Sabtu"
+    };
+
+    const monthsInMalay = {
+        "January": "Januari",
+        "February": "Februari",
+        "March": "Mac",
+        "April": "April",
+        "May": "Mei",
+        "June": "Jun",
+        "July": "Julai",
+        "August": "Ogos",
+        "September": "September",
+        "October": "Oktober",
+        "November": "November",
+        "December": "Disember"
+    };
+
+    const dayNameEnglish = today.toLocaleDateString('en-US', { weekday: 'long' });
+    const monthNameEnglish = today.toLocaleDateString('en-US', { month: 'long' });
+
+    const dayNameMalay = daysInMalay[dayNameEnglish];
+    const monthNameMalay = monthsInMalay[monthNameEnglish];
+
+    const formattedDate = `${dayNameMalay}, ${today.getDate()} ${monthNameMalay} ${today.getFullYear()}`;
+
+    document.getElementById("gregorianDate").innerText = `📅 Tarikh Masihi: ${formattedDate}`;
+    document.getElementById("hijriDate").innerText = `🏠 Tarikh Hijri: ${Intl.DateTimeFormat('ar-SA-u-ca-islamic', { dateStyle: 'long' }).format(today)}`;
+}
+
         
         function convertTo12Hour(time) {
             let [hours, minutes] = time.split(':').map(Number);
