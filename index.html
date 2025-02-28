@@ -136,14 +136,12 @@
         <div id="prayerTimes" class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4"></div>
         
         <div class="bg-blue-600 text-white p-4 rounded-lg shadow-lg mt-6">
-            <h2 class="text-lg font-semibold mb-2">Ayat Al-Quran</h2>
+            <h2 class="text-lg font-semibold mb-2">Ayat Al-Quran</h2><br>
             <p id="quranVerse" class="quran-text"></p>
             <p id="quranReference" class="quran-translation mt-2"></p>
         </div>
     </div>
 
-    <audio id="azanAudio" src="https://www.islamcan.com/audio/adhan/azan1.mp3"></audio>
-    
     <script>
         async function getPrayerTimes() {
             const zone = document.getElementById("zoneSelect").value;
@@ -181,29 +179,10 @@
                     }
                 });
                 document.getElementById("prayerTimes").innerHTML = output;
-                checkAzanTime(times);
             } catch (error) {
                 console.error("Error fetching prayer times:", error);
                 alert("Gagal mendapatkan waktu solat. Sila cuba lagi nanti.");
             }
-        }
-
-        function checkAzanTime(prayerTimes) {
-            setInterval(() => {
-                const now = new Date();
-                const currentTime = `${now.getHours()}:${now.getMinutes()}`;
-
-                Object.values(prayerTimes).forEach(time => {
-                    if (time === currentTime) {
-                        playAzan();
-                    }
-                });
-            }, 60000);
-        }
-
-        function playAzan() {
-            const azanAudio = document.getElementById("azanAudio");
-            azanAudio.play();
         }
 
         async function getQuranVerse() {
@@ -234,6 +213,13 @@
             const today = new Date();
             document.getElementById("gregorianDate").innerText = `📅 Tarikh Masihi: ${today.toDateString()}`;
             document.getElementById("hijriDate").innerText = `🏠 Tarikh Hijri: ${Intl.DateTimeFormat('ar-SA-u-ca-islamic', {dateStyle: 'long'}).format(today)}`;
+        }
+
+        function convertTo12Hour(time) {
+            let [hours, minutes] = time.split(':').map(Number);
+            let period = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+            return `${hours}:${minutes.toString().padStart(2, '0')} ${period}`;
         }
 
         getQuranVerse();
