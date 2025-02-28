@@ -238,12 +238,34 @@
             }
         }
 
+        // function displayDate() {
+        //     const today = new Date();
+        //     document.getElementById("gregorianDate").innerText = `📅 Tarikh Masihi: ${today.toDateString()}`;
+        //     document.getElementById("hijriDate").innerText = `🏠 Tarikh Hijri: ${Intl.DateTimeFormat('ar-SA-u-ca-islamic', {dateStyle: 'long'}).format(today)}`;
+        // }
+
         function displayDate() {
             const today = new Date();
-            document.getElementById("gregorianDate").innerText = `📅 Tarikh Masihi: ${today.toDateString()}`;
-            document.getElementById("hijriDate").innerText = `🏠 Tarikh Hijri: ${Intl.DateTimeFormat('ar-SA-u-ca-islamic', {dateStyle: 'long'}).format(today)}`;
+            
+            const daysInMalay = {
+                "Sunday": "Ahad",
+                "Monday": "Isnin",
+                "Tuesday": "Selasa",
+                "Wednesday": "Rabu",
+                "Thursday": "Khamis",
+                "Friday": "Jumaat",
+                "Saturday": "Sabtu"
+            };
+        
+            const dayNameEnglish = today.toLocaleDateString('en-US', { weekday: 'long' });
+            const dayNameMalay = daysInMalay[dayNameEnglish];
+        
+            const formattedDate = `${dayNameMalay}, ${today.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+        
+            document.getElementById("gregorianDate").innerText = `📅 Tarikh Masihi: ${formattedDate}`;
+            document.getElementById("hijriDate").innerText = `🏠 Tarikh Hijri: ${Intl.DateTimeFormat('ar-SA-u-ca-islamic', { dateStyle: 'long' }).format(today)}`;
         }
-
+        
         function convertTo12Hour(time) {
             let [hours, minutes] = time.split(':').map(Number);
             let period = hours >= 12 ? 'PM' : 'AM';
