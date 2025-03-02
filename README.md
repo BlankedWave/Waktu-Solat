@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="https://cdn-icons-png.flaticon.com/512/10031/10031075.png" alt="Icon Description" width="100">
+</p>
+
+
 # Waktu Solat
 
 Ini adalah projek **Waktu Solat** yang menyediakan maklumat waktu solat terkini untuk Malaysia. Projek ini menggunakan data daripada API e-Solat JAKIM untuk mendapatkan waktu solat dan API alQuran Cloud untuk mendapatkan ayat Al-Quran rawak. Projek ini juga menggunakan Tailwind CSS untuk styling.
