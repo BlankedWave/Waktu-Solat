@@ -49,22 +49,21 @@
     <!-- Dropdown disesuaikan untuk dark mode -->
     <select id="zoneSelect" class="mt-2 p-2 border border-gray-600 rounded bg-gray-800 text-white w-full" onchange="getPrayerTimes()">
       <option selected disabled>Pilih Zon</option>
-      <!-- (pilihan zon seperti sebelum ini) -->
-      <!-- Contoh: -->
+      <!-- Contoh zon -->
       <optgroup label="Johor">
         <option value="JHR01">JHR01 - Pulau Aur dan Pulau Pemanggil</option>
         <option value="JHR02">JHR02 - Johor Bahru, Kota Tinggi, Mersing, Kulai</option>
-        <!-- ... -->
       </optgroup>
-      <!-- ... (lain-lain optgroup) ... -->
+      <!-- ... (lain-lain zon) ... -->
     </select>
-
+<br><br>
     <!-- Tarikh dan Masa dipaparkan di sini -->
-    <p id="hijriDate" class="text-lg mt-4"></p>
-    <p id="gregorianDate" class="text-lg mb-4"></p>
-    <p id="currentTime" class="text-lg mt-2"></p>
+<p id="hijriDate" class="text-lg my-2"></p>
+<p id="gregorianDate" class="text-lg my-2"></p>
+<p id="currentTime" class="text-lg my-2"></p>
     
-    <div id="prayerTimes" class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4"></div>
+    <div id="prayerTimes" class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-2"></div>
+
     
     <div class="bg-gray-700 text-white p-4 rounded-lg shadow-lg mt-6">
       <h2 class="text-lg font-semibold mb-2">Ayat Al-Quran</h2>
@@ -75,8 +74,17 @@
       <!-- Rujukan: Surah & ayat -->
       <p id="quranReference" class="quran-translation mt-2"></p>
     </div>
+    
+    <br><br>
+        <!-- Disclaimer mengenai sumber waktu solat -->
+    <p class="text-sm text-gray-300 mb-4">
+      Makluman: Waktu solat yang dipaparkan adalah daripada API e-Solat JAKIM.
+    </p>
+    
   </div>
 
+  
+  
   <!-- Footer hanya untuk copyright -->
   <footer class="text-center mt-6 text-gray-400">
     <p>&copy; 2025 Muhammad Aqil</p>
@@ -225,7 +233,6 @@
         second: 'numeric',
         hour12: true
       });
-      // Kemaskini masa dalam elemen currentTime
       document.getElementById("currentTime").innerText = `🕒 Masa Sekarang: ${timeString}`;
     }
 
