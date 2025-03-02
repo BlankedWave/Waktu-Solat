@@ -25,4 +25,3 @@ Ini adalah projek **Waktu Solat** yang menyediakan maklumat waktu solat terkini 
 - **JavaScript** – Logik interaktif, pengambilan data API dan manipulasi DOM.
 - **API e-Solat JAKIM** – Sumber data waktu solat.
 - **API alQuran Cloud** – Sumber data ayat Al-Quran.
-- **Unsplash** – Sumber imej latar belakang.
