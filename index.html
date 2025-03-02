@@ -28,10 +28,10 @@
       width: 100px;
       margin: 0 auto;
     }
-    /* Kesan berkelip untuk waktu solat yang dah masuk */
+    /* Kesan berkelip untuk waktu solat yang telah masuk */
     .blinking {
-      color: green;
-      animation: blink 1s linear infinite;
+      color: cyan;
+      animation: blink 2s linear infinite;
     }
     @keyframes blink {
       0% { opacity: 1; }
@@ -40,14 +40,14 @@
     }
   </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body class="bg-gray-900 text-white">
   <div class="container mx-auto p-6 text-center">
     <img src="https://cdn-icons-png.flaticon.com/512/10031/10031075.png" alt="Logo" class="logo mb-4" />
     <h1 class="text-3xl font-bold mb-4">Waktu Solat - Malaysia</h1>
 
     <label for="zoneSelect" class="block text-lg font-semibold">Pilih Zon:</label>
-    <!-- Kelas 'w-full' untuk responsif mobile -->
-    <select id="zoneSelect" class="mt-2 p-2 border border-gray-300 rounded text-black w-full" onchange="getPrayerTimes()">
+    <!-- Dropdown disesuaikan untuk dark mode -->
+    <select id="zoneSelect" class="mt-2 p-2 border border-gray-600 rounded bg-gray-800 text-white w-full" onchange="getPrayerTimes()">
       <option selected disabled>Pilih Zon</option>
       <!-- Johor -->
       <optgroup label="Johor">
@@ -159,14 +159,18 @@
     <div id="prayerTimes" class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4"></div>
     
     <div class="bg-gray-700 text-white p-4 rounded-lg shadow-lg mt-6">
-      <h2 class="text-lg font-semibold mb-2">Ayat Al-Quran</h2><br>
-      <p id="quranVerse" class="quran-text"></p><br>
+      <h2 class="text-lg font-semibold mb-2">Ayat Al-Quran</h2>
+      <br>
+      <!-- Teks ayat dalam Bahasa Arab -->
+      <p id="quranVerse" class="quran-text"></p>
+      <br>
+      <!-- Rujukan: Surah & ayat -->
       <p id="quranReference" class="quran-translation mt-2"></p>
     </div>
   </div>
 
-  <!-- Footer: Masa sekarang tanpa kesan berkelip -->
-  <footer class="text-center mt-6 text-gray-700">
+  <!-- Footer: Masa sekarang dalam format 12 jam -->
+  <footer class="text-center mt-6 text-gray-400">
     <p id="currentTime" class="mb-2"></p>
     <p>&copy; 2025 Muhammad Aqil</p>
   </footer>
@@ -221,7 +225,7 @@
             let time12Hour = convertTo12Hour(times[key]);
             // Jika ini adalah waktu solat yang aktif (dah masuk), tambahkan kelas blinking
             let blinkingClass = (key === activePrayer) ? "blinking" : "";
-            output += `<div class="bg-white p-4 rounded-lg shadow-md">
+            output += `<div class="bg-gray-800 p-4 rounded-lg shadow-md">
                         <h3 class="font-semibold">${name}</h3>
                         <p class="${blinkingClass}">${time12Hour}</p>
                       </div>`;
@@ -305,10 +309,15 @@
       return `${hours}:${minutes.toString().padStart(2, '0')} ${period}`;
     }
 
-    // Fungsi untuk memaparkan masa sekarang (tanpa kesan berkelip)
+    // Fungsi untuk memaparkan masa sekarang dalam format 12 jam
     function updateTime() {
       const now = new Date();
-      const timeString = now.toLocaleTimeString();
+      const timeString = now.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        hour12: true
+      });
       document.getElementById("currentTime").innerText = `🕒 Masa Sekarang: ${timeString}`;
     }
 
